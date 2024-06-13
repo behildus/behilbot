@@ -14,7 +14,7 @@ module.exports = {
             queue.setRepeatMode(0);
             queue.clear();
             queue.node.stop();
-            return interaction.replay(`Stopped music and cleared queue`);
+            return interaction.reply(`Stopped music and cleared queue`);
         }
     }
 }
