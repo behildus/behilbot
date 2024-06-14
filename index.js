@@ -45,9 +45,9 @@ for (const file of eventFiles) {
 const player = new Player(client);
 player.extractors.loadDefault();
 // this event is emitted whenever discord-player starts to play a track
-player.events.on('playerStart', (queue, track) => {
+player.events.on('playerStart', (queue) => {
     // we will later define queue.metadata object while creating the queue
-    queue.metadata.channel.send(`Started playing **${track.title}**!`);
+    queue.metadata.channel.send(`Started playing ***!`);
 });
 
 // Log in to Discord with your client's token
