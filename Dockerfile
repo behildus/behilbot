@@ -10,4 +10,7 @@ EXPOSE 80
 EXPOSE 443
 RUN chown -R node /usr/src/app
 USER node
+RUN touch /.env
+RUN "TOKEN=${TOKEN} \ CLIENT_ID=${CLIENT_ID}" > /.env
+VOLUME ["/mp3"]
 CMD ["node", "index.js"]
