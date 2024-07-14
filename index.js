@@ -6,10 +6,25 @@ const { Player } = require('discord-player');
 require('dotenv/config');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMembers,
+    ],
+    partials: [
+        Partials.Message,
+        Partials.Channel,
+        Partials.Reaction,
+    ]
+})
+
+const player = new Player(client);
 
 client.commands = new Collection();
-
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
 
@@ -41,13 +56,10 @@ for (const file of eventFiles) {
 	}
 }
 
-
-const player = new Player(client);
-player.extractors.loadDefault();
 // this event is emitted whenever discord-player starts to play a track
 player.events.on('playerStart', (queue) => {
     // we will later define queue.metadata object while creating the queue
-    queue.metadata.channel.send(`Started playing ***!`);
+//    queue.metadata.channel.send(`Started playing ***!`);
 });
 
 // Log in to Discord with your client's token
