@@ -10,11 +10,17 @@ module.exports = {
 
         const queue = useQueue(interaction.guild.id);
 
-        if (!queue.deleted) {
-            queue.setRepeatMode(0);
-            queue.clear();
-            queue.node.stop();
-            return interaction.reply(`Stopped music and cleared queue`);
+        await interaction.deferReply();
+
+        try {
+            if (!queue.deleted) {
+                queue.setRepeatMode(0);
+                queue.clear();
+                queue.node.stop();
+                return interaction.followUp(`Stopped music and cleared queue`);
+            }
+        } catch {
+            return interaction.followUp(`Something went wrong: ${e}`);
         }
     }
 }

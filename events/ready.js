@@ -23,5 +23,13 @@ module.exports = {
             channel.messages.fetch()
         }
 		console.log(`Ready! Logged in as ${client.user.tag}`);
+
+
+		console.log(player.scanDeps());
+
+		player.on('debug', console.log);
+
+
+		player.events.on('debug', (queue, message) => console.log(`[DEBUG ${queue.guild.id}] ${message}`));
 	},
 };

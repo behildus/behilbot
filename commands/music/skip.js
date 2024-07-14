@@ -11,7 +11,12 @@ module.exports = {
 
         queue.node.skip();
 
-        return interaction.reply(`Skipping`);
+        await interaction.deferReply();
+        try {
+            return interaction.followUp(`Skipping`);
+        } catch {
+            return interaction.followUp(`Something went wrong: ${e}`);
+        }
 
     }
 
