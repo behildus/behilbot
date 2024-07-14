@@ -5,7 +5,7 @@ ARG CLIENT_ID
 WORKDIR /usr/src/app
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN touch /.env
-RUN "TOKEN=${TOKEN} \ CLIENT_ID=${CLIENT_ID}" > .env
+RUN echo "TOKEN=${TOKEN} \ CLIENT_ID=${CLIENT_ID}" >> /.env
 RUN npm install --production --silent && mv node_modules ../
 COPY . .
 EXPOSE 80
