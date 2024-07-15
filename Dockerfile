@@ -15,5 +15,6 @@ USER node
 VOLUME ["/usr/src/app/mp3"]
 WORKDIR /usr/src/app/mp3
 RUN touch /usr/src/app/mp3/playlists.json
+RUN echo "{'playlists': []}"
 WORKDIR /usr/src/app
 CMD ["node", "index.js"]
