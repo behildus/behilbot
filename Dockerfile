@@ -1,4 +1,5 @@
 FROM node:lts-alpine
+RUN apt-get update && apt-get install ffmpeg
 ARG TOKEN
 ARG CLIENT_ID
 WORKDIR /usr/src/app
