@@ -1,5 +1,4 @@
 FROM node:lts-alpine
-RUN apt-get -y update && apt-get install -y ffmpeg
 ARG TOKEN
 ARG CLIENT_ID
 WORKDIR /usr/src/app
@@ -7,6 +6,9 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN touch /usr/src/app/.env
 RUN echo "TOKEN=${TOKEN} \ CLIENT_ID=${CLIENT_ID}" >> /usr/src/app/.env
 RUN npm install && npm install --global typescript
+RUN apk update
+RUN apk add
+RUN apk add ffmpeg
 COPY . .
 EXPOSE 80
 EXPOSE 443
