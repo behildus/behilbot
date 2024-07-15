@@ -6,7 +6,6 @@ COPY ["package.json", "package-lock.json", "npm-shrinkwrap.json*", "./"]
 RUN touch /usr/src/app/.env
 RUN echo "TOKEN=${TOKEN} \ CLIENT_ID=${CLIENT_ID}" >> /usr/src/app/.env
 RUN npm install && npm install --global typescript
-COPY . .
 EXPOSE 80
 EXPOSE 443
 RUN chown -R node /usr/src/app
