@@ -13,7 +13,6 @@ module.exports = {
                 .setRequired(true)
                 .setMinLength(2)
                 .setMaxLength(500)
-                .setAutocomplete(true)
         ),
     async execute(interaction) {
         const player = useMainPlayer();

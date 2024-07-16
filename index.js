@@ -23,6 +23,7 @@ const client = new Client({
 })
 
 const player = new Player(client);
+player.extractors.loadDefault();
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
@@ -44,11 +45,11 @@ for (const folder of commandFolders) {
 }
 
 const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync(eventsPath).filter(file2 => file2.endsWith('.js'));
 
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
+for (const file2 of eventFiles) {
+	const filePath2 = path.join(eventsPath, file2);
+	const event = require(filePath2);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {

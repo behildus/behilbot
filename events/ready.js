@@ -6,7 +6,6 @@ module.exports = {
 	once: true,
 	async execute(client) {
 		const player = useMainPlayer();
-        await player.extractors.loadDefault();
 
 		await client.user.setPresence({
             status: PresenceUpdateStatus.Online,
@@ -24,12 +23,9 @@ module.exports = {
         }
 		console.log(`Ready! Logged in as ${client.user.tag}`);
 
-
+		// Debugging stuff
 		console.log(player.scanDeps());
-
 		player.on('debug', console.log);
-
-
 		player.events.on('debug', (queue, message) => console.log(`[DEBUG ${queue.guild.id}] ${message}`));
 	},
 };
