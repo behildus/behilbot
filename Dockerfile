@@ -9,6 +9,7 @@ RUN npm install && npm install --global typescript
 RUN apk update
 RUN apk add
 RUN apk add ffmpeg
+RUN apk add --no-cache gcompat libstdc++
 COPY . .
 EXPOSE 80
 EXPOSE 443

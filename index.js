@@ -1,11 +1,11 @@
-// Require the necessary discord.js classes
+// require the necessary discord.js classes
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, Partials, GatewayIntentBits } = require('discord.js');
 const { Player } = require('discord-player');
 require('dotenv/config');
 
-// Create a new client instance
+// create a new client instance
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -21,10 +21,13 @@ const client = new Client({
         Partials.Reaction,
     ]
 })
+// create player instance and load extractors
+const player = new Player(client, {
+	skipFFmpeg: false
+});
+player.extractors.loadDefault((ext) => ext !== 'YoutubeExtractor');
 
-const player = new Player(client);
-player.extractors.loadDefault();
-
+// search command directory to set commands
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -44,6 +47,7 @@ for (const folder of commandFolders) {
 	}
 }
 
+// search event directory to set events
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file2 => file2.endsWith('.js'));
 
@@ -58,10 +62,10 @@ for (const file2 of eventFiles) {
 }
 
 // this event is emitted whenever discord-player starts to play a track
-player.events.on('playerStart', (queue) => {
+player.events.on('playerStart', (queue, track) => {
     // we will later define queue.metadata object while creating the queue
 //    queue.metadata.channel.send(`Started playing ***!`);
 });
 
-// Log in to Discord with your client's token
+// log in to Discord with the client's token
 client.login(process.env.TOKEN);
