@@ -1,6 +1,5 @@
 const { useMainPlayer } = require('discord-player');
 const { SlashCommandBuilder } = require('discord.js');
-const { useQueue, QueryType } = require('discord-player');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,7 +16,7 @@ module.exports = {
     async execute(interaction) {
         const player = useMainPlayer();
         const channel = interaction.member.voice.channel;
-        const queue = useQueue(interaction.guild.id);
+        //const queue = useQueue(interaction.guild.id);
         if (!channel) return interaction.reply('You are not connected to a voice channel!'); // make sure we have a voice channel
         const query = interaction.options.getString('query', true); // we need input/query to play
     

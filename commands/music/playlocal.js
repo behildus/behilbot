@@ -62,6 +62,7 @@ module.exports = {
         //console.log(tracks);
         
         await interaction.deferReply();{
+            queue.clear();
             for (const track of tracks) {
                 const trackPath = searchFile(mp3Path, track + ".mp3");
                 //console.log(trackPath);

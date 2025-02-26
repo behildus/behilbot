@@ -6,6 +6,6 @@
     "discord-player": "^6.6.10",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "youtube-ext": "^1.1.25"
+    "play-dl": "^1.9.7"
   }
 }

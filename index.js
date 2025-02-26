@@ -22,10 +22,8 @@ const client = new Client({
     ]
 })
 // create player instance and load extractors
-const player = new Player(client, {
-	skipFFmpeg: false
-});
-player.extractors.loadDefault((ext) => ext !== 'YoutubeExtractor');
+const player = new Player(client);
+player.extractors.loadDefault();
 
 // search command directory to set commands
 client.commands = new Collection();
@@ -64,7 +62,7 @@ for (const file2 of eventFiles) {
 // this event is emitted whenever discord-player starts to play a track
 player.events.on('playerStart', (queue, track) => {
     // we will later define queue.metadata object while creating the queue
-//    queue.metadata.channel.send(`Started playing ***!`);
+    //queue.metadata.channel.send(`Started playing ***!`);
 });
 
 // log in to Discord with the client's token
