@@ -5,6 +5,22 @@ const { useMainPlayer } = require('discord-player');
 const { useQueue, QueryType } = require('discord-player');
 const playlists = require('../../mp3/playlists.json');
 
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
 function searchFile(dir, fileName) {
     const files = fs.readdirSync(dir);
     //console.log(files);
@@ -61,8 +77,14 @@ module.exports = {
         }
         //console.log(tracks);
         
+        shuffle(tracks);
+
         await interaction.deferReply();{
-            queue.clear();
+            if (queue != null) {
+                queue.setRepeatMode(0);
+                queue.clear();
+                queue.node.stop();
+            }
             for (const track of tracks) {
                 const trackPath = searchFile(mp3Path, track + ".mp3");
                 //console.log(trackPath);
