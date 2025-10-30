@@ -53,7 +53,7 @@ module.exports = {
                 .setName('query')
                 .setDescription('Search query or URL.')
                 .setRequired(true)
-                .addChoices(...playlists.playlists.map(playlist => ({ name: playlist.title, value: playlist.title})))
+                .addChoices()//...playlists.playlists.map(playlist => ({ name: playlist.title, value: playlist.title})))
         ),
     async execute(interaction) {
         //console.log(playlists);
