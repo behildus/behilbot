@@ -29,7 +29,7 @@ module.exports = {
 		
 		setInterval(function () {
 			var date = new Date();
-			var time = "" + date.getDay().toString() + date.getHours().toString() + ":" + date.getMinutes().toString();
+			var time = date.getDay().toString() + ":" + date.getHours().toString() + ":" + date.getMinutes().toString();
 			console.log(time);
 			for (const message of schedule.messages) {
 				console.log(message.time);
