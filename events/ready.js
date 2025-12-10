@@ -1,7 +1,7 @@
 // runs once when client is ready
 const { ActivityType, Events, PresenceUpdateStatus } = require('discord.js');
 const { useMainPlayer } = require('discord-player');
-const schedule = require('../schedule.json');
+const schedule = require('../mp3/schedule.json');
 
 module.exports = {
 	name: Events.ClientReady,
@@ -42,7 +42,7 @@ module.exports = {
 				}
 			}
 			
-		}, 1000 * 60);
+		}, 1000);
 		// debugging stuff
 		console.log(player.scanDeps());
 		player.on('debug', console.log);

@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const fs = require('node:fs');
-const schedule = require('../../schedule.json');
+const schedule = require('../../mp3/schedule.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -29,7 +29,7 @@ module.exports = {
 
         console.log(JSON.stringify(schedule));
 
-        fs.writeFileSync('schedule.json', JSON.stringify(schedule));
+        fs.writeFileSync('mp3/schedule.json', JSON.stringify(schedule));
 
         return interaction.reply(`Message Scheduled`);
 	},
