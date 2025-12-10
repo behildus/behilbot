@@ -30,11 +30,11 @@ module.exports = {
 		setInterval(function () {
 			var date = new Date();
 			var time = date.getDay().toString() + ":" + date.getHours().toString() + ":" + date.getMinutes().toString();
-			console.log(time);
+			//console.log(time);
 			for (const message of schedule.messages) {
-				console.log(message.time);
+				//console.log(message.time);
 				if (message.time == time) {
-					console.log(channel.guildId);
+					//console.log(channel.guildId);
 					if (channel.guildId == message.server) {
 						client.channels.fetch(message.channel)
 							.then((channel) => {channel.send(message.text)});
@@ -42,7 +42,7 @@ module.exports = {
 				}
 			}
 			
-		}, 1000);
+		}, 1000*60);
 		// debugging stuff
 		console.log(player.scanDeps());
 		player.on('debug', console.log);
