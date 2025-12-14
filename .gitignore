@@ -1,4 +1,5 @@
 node_modules
 schedule.json
 .env
+.env1
 .vscode
